@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<base href="../../../" />
+		<script src="list.js"></script>
+		<script src="page.js"></script>
+		<link type="text/css" rel="stylesheet" href="page.css" />
+	</head>
+	<body class="rtl">
+		[page:Object3D] &rarr; [page:Camera] &rarr;
+
+		<h1>[name]</h1>
+
+		<p class="desc">
+			الكاميرا التي تستخدم [link:https://en.wikipedia.org/wiki/Orthographic_projection orthographic projection].<br /><br />
+
+			في وضع العرض هذا ، يظل حجم الكائن في الصورة المعروضة ثابتًا بغض النظر عن بعده عن الكاميرا.<br /><br />
+
+			يمكن أن يكون هذا مفيدًا لعرض مشاهد ثنائية الأبعاد وعناصر واجهة المستخدم ، من بين أشياء أخرى.
+		</p>
+
+		<h2>مثال التعليمة البرمجية</h2>
+
+		<code>
+		var camera = new THREE.OrthographicCamera( width / - 2, width / 2, height / 2, height / - 2, 1, 1000 );
+		scene.add( camera );
+		</code>
+
+		<h2>أمثلة (Examples)</h2>
+
+		<p>
+			[example:webgl_camera camera ]<br />
+			[example:webgl_interactive_cubes_ortho interactive / cubes / ortho ]<br />
+			[example:webgl_materials_cubemap_dynamic materials / cubemap / dynamic ]<br />
+			[example:webgl_postprocessing_advanced postprocessing / advanced ]<br />
+			[example:webgl_postprocessing_dof2 postprocessing / dof2 ]<br />
+			[example:webgl_postprocessing_godrays postprocessing / godrays ]<br />
+			[example:webgl_rtt rtt ]<br />
+			[example:webgl_shaders_tonemapping shaders / tonemapping ]<br />
+			[example:webgl_shadowmap shadowmap ]
+		</p>
+
+		<h2>المنشئ (Constructor)</h2>
+
+
+		<h3>[name]( [param:Number left], [param:Number right], [param:Number top], [param:Number bottom], [param:Number near], [param:Number far] )</h3>
+		<p>
+		left — Camera frustum left plane.<br />
+		right — Camera frustum right plane.<br />
+		top — Camera frustum top plane.<br />
+		bottom — Camera frustum bottom plane.<br />
+		near — Camera frustum near plane.<br />
+		far — Camera frustum far plane.<br /><br />
+
+		معا كل هذا يحدد الـ[link:https://en.wikipedia.org/wiki/Viewing_frustum viewing frustum] الخاص بالكاميرا.
+		</p>
+
+
+		<h2>الخصائص (Properties)</h2>
+		<p>
+			راجع الفئة [page:Camera] الأساسية للممتلكات العامة.<br>
+ 			لاحظ أنه بعد إجراء التغييرات على معظم هذه الخصائص ، سيتعين عليك الاتصال [page:OrthographicCamera.updateProjectionMatrix .updateProjectionMatrix] حتى تدخل التغييرات حيز التنفيذ.
+		</p>
+
+		<h3>[property:Float bottom]</h3>
+		<p>Camera frustum bottom plane.</p>
+
+		<h3>[property:Float far]</h3>
+		<p>
+		Camera frustum far plane.<br /><br />
+		الافتراضي هو *2000*.<br /><br />
+
+		يجب أن تكون أكبر من القيمة الحالية للمستوى القريب [page:.near near] .
+		</p>
+
+		<h3>[property:Float left]</h3>
+		<p>Camera frustum left plane.</p>
+
+		<h3>[property:Float near]</h3>
+		<p>
+			Camera frustum near plane.<br /><br />
+			الافتراضي هو *0.1*.<br /><br />
+
+			النطاق الصالح بين 0 والقيمة الحالية للمستوى البعيد [page:.far far].
+			لاحظ أنه ، على عكس [page:PerspectiveCamera] ، *0* هي قيمة صالحة لمستوى OrthographicCamera القريب.
+		</p>
+
+		<h3>[property:Float right]</h3>
+		<p>Camera frustum right plane.</p>
+
+		<h3>[property:Float top]</h3>
+		<p>Camera frustum top plane.</p>
+
+		<h3>[property:Object view]</h3>
+		<p>حددها [page:OrthographicCamera.setViewOffset setViewOffset]. الافتراضي هو *null*.</p>
+
+		<h3>[property:number zoom]</h3>
+		<p>تتحصل على أو تحديد عامل التكبير / التصغير للكاميرا. الافتراضي هو *1*.</p>
+
+		<h2>الوظائف (Methods)</h2>
+		<p>راجع الفئة الأساسية [page:Camera]  للتعرف على الطرق الشائعة.</p>
+
+		<h3>[method:null setViewOffset]( [param:Float fullWidth], [param:Float fullHeight], [param:Float x], [param:Float y], [param:Float width], [param:Float height] )</h3>
+		<p>
+		fullWidth — العرض الكامل لإعداد العرض المتعدد<br />
+		fullHeight — الارتفاع الكامل لإعداد العرض المتعدد<br />
+		x — الإزاحة الأفقية للكاميرا الفرعية<br />
+		y — الإزاحة الرأسية للكاميرا الفرعية<br />
+		width — عرض الكاميرا الفرعية<br />
+		height — ارتفاع الكاميرا الفرعية<br /><br />
+
+			يضبط الإزاحة في [link:https://en.wikipedia.org/wiki/Viewing_frustum viewing frustum] أكبر..
+			هذا مفيد للإعدادات متعددة النوافذ أو الشاشات المتعددة / الأجهزة المتعددة.
+			للحصول على مثال حول كيفية استخدامه ، انظر [page:PerspectiveCamera.setViewOffset PerspectiveCamera].
+		</p>
+
+		<h3>[method:null clearViewOffset]()</h3>
+		<p>
+		يزيل أي إزاحة تم تعيينها بواسطة طريقة .setViewOffset .
+		</p>
+
+		<h3>[method:null updateProjectionMatrix]()</h3>
+		<p>
+		يحدّث مصفوفة عرض الكاميرا. يجب استدعاؤه بعد أي تغيير للمعلمات.
+		</p>
+
+		<h3>[method:Object toJSON]([param:object meta])</h3>
+		<p>
+		meta -- كائن يحتوي على بيانات وصفية مثل الأنسجة أو الصور في أحفاد الكائنات.<br />
+		يحول الكاميرا إلى three.js [link:https://github.com/mrdoob/three.js/wiki/JSON-Object-Scene-format-4 JSON Object/Scene format]
+		</p>
+
+		<h2>المصدر (Source)</h2>
+
+		<p>
+			[link:https://github.com/mrdoob/three.js/blob/master/src/[path].js src/[path].js]
+		</p>
+	</body>
+</html>
