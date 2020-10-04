@@ -528,6 +528,7 @@ var list = {
 				"ArrayCamera": "api/ar/cameras/ArrayCamera",
 				"Camera": "api/ar/cameras/Camera",
 				"CubeCamera": "api/ar/cameras/CubeCamera",
+				"OrthographicCamera": "api/ar/cameras/OrthographicCamera"
 			},
 
 		}
